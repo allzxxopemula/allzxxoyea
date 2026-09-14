@@ -18,6 +18,10 @@ import './App.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// FIX BUG 1: Mencegah GSAP me-refresh layout saat address bar HP muncul/hilang
+// Ini adalah kunci utama agar animasi pin tidak lompat/teleport di Android
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 function App() {
   const appRef = useRef(null);
 
@@ -102,7 +106,7 @@ function App() {
           );
 
         // =========================================================
-        // 2. SECTION HEADING + COPY + CARDS (TERMASUK GITHUB)
+        // 2. SECTION HEADING + COPY + CARDS
         // =========================================================
         gsap
           .utils
@@ -258,10 +262,10 @@ function App() {
         }
 
         // =========================================================
-        // 5. ABOUT SECTION PIN
+        // 5. ABOUT SECTION PIN (FIX BUG TELEPORT/BLINK)
         // =========================================================
-        const aboutSection =
-          appRef.current?.querySelector('.about-section');
+        const aboutSection = appRef.current?.querySelector('.about-section');
+        const projectSection = appRef.current?.querySelector('.project-section');
 
         if (aboutSection) {
           gsap.set(aboutSection, {
@@ -273,7 +277,13 @@ function App() {
             zIndex: 2,
           });
 
-          const aboutPinEnd = () => `+=${aboutSection.offsetHeight}`;
+          // FIX BUG: Hitung end pin berdasarkan tinggi project-section
+          // Biar lepasnya pas banget saat project section selesai menutupi about
+          const aboutPinEnd = () => {
+             return projectSection 
+               ? `+=${projectSection.offsetHeight}` 
+               : `+=${aboutSection.offsetHeight}`;
+          };
 
           ScrollTrigger.create({
             trigger: aboutSection,
@@ -281,7 +291,7 @@ function App() {
             end: aboutPinEnd,
             pin: true,
             pinSpacing: false,
-            anticipatePin: 1,
+            // anticipatePin: 1 dihapus karena memicu salah kalkulasi di Android
             invalidateOnRefresh: true,
           });
 
@@ -344,34 +354,36 @@ function App() {
         }
       });
 
-// =========================================================
-// 7. GITHUB BARS OVERLAY
-// =========================================================
-media.add('(min-width: 1px)', () => {
-  const githubTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.github-section',
-      start: 'bottom 95%',
-      end: 'bottom -20%',
-      scrub: 1,
-    },
-  });
+      // =========================================================
+      // 7. GITHUB BARS OVERLAY (FIX BUG MUNCUL KECEPETAN)
+      // =========================================================
+      media.add('(min-width: 1px)', () => {
+        const githubTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.github-section',
+            // FIX BUG: Ubah dari 95% ke 75% agar animasi mulai saat section 
+            // github mau habis, bukan saat baru muncul dari bawah.
+            start: 'bottom 75%', 
+            end: 'bottom 0%',
+            scrub: 1,
+          },
+        });
 
-  githubTl.to(
-    '.gh-bar',
-    {
-      scaleY: 1,
-      stagger: {
-        each: 0.15,
-        from: 'start',
-        ease: 'none',
-      },
-      duration: 1,
-      ease: 'power2.out',
-    },
-    0
-  );
-});
+        githubTl.to(
+          '.gh-bar',
+          {
+            scaleY: 1,
+            stagger: {
+              each: 0.15,
+              from: 'start',
+              ease: 'none',
+            },
+            duration: 1,
+            ease: 'power2.out',
+          },
+          0
+        );
+      });
 
       // =========================================================
       // 8. JOURNEY PROGRESS LINE
