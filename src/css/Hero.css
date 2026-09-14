@@ -2,7 +2,8 @@
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* Pakai vh biar full layar */
+  min-height: 100vh; /* fallback buat browser lama yang belum ngerti dvh */
+  min-height: 100dvh; /* dynamic viewport height: ngikutin tinggi layar yang KELIATAN saat itu, jadi gak "loncat" pas address bar Chrome collapse/muncul */
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -18,9 +18,16 @@ import './App.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// FIX BUG 1: Mencegah GSAP me-refresh layout saat address bar HP muncul/hilang
-// Ini adalah kunci utama agar animasi pin tidak lompat/teleport di Android
-ScrollTrigger.config({ ignoreMobileResize: true });
+// FIX #1: Ini kunci utama buat bug "blink / teleport" di Android.
+// Di mobile browser (Chrome/Safari Android), address bar yang muncul/hilang
+// saat scroll bikin window resize event nembak terus, dan itu bikin
+// ScrollTrigger auto-refresh di tengah-tengah pin About -> posisi pin
+// keitung ulang mendadak -> section Project "kelempar" ke atas.
+// ignoreMobileResize: true bikin ScrollTrigger cuek sama resize yang
+// disebabkan address bar itu di mobile.
+ScrollTrigger.config({
+  ignoreMobileResize: true,
+});
 
 function App() {
   const appRef = useRef(null);
@@ -106,7 +113,7 @@ function App() {
           );
 
         // =========================================================
-        // 2. SECTION HEADING + COPY + CARDS
+        // 2. SECTION HEADING + COPY + CARDS (TERMASUK GITHUB)
         // =========================================================
         gsap
           .utils
@@ -262,10 +269,10 @@ function App() {
         }
 
         // =========================================================
-        // 5. ABOUT SECTION PIN (FIX BUG TELEPORT/BLINK)
+        // 5. ABOUT SECTION PIN
         // =========================================================
-        const aboutSection = appRef.current?.querySelector('.about-section');
-        const projectSection = appRef.current?.querySelector('.project-section');
+        const aboutSection =
+          appRef.current?.querySelector('.about-section');
 
         if (aboutSection) {
           gsap.set(aboutSection, {
@@ -277,13 +284,7 @@ function App() {
             zIndex: 2,
           });
 
-          // FIX BUG: Hitung end pin berdasarkan tinggi project-section
-          // Biar lepasnya pas banget saat project section selesai menutupi about
-          const aboutPinEnd = () => {
-             return projectSection 
-               ? `+=${projectSection.offsetHeight}` 
-               : `+=${aboutSection.offsetHeight}`;
-          };
+          const aboutPinEnd = () => `+=${aboutSection.offsetHeight}`;
 
           ScrollTrigger.create({
             trigger: aboutSection,
@@ -291,7 +292,7 @@ function App() {
             end: aboutPinEnd,
             pin: true,
             pinSpacing: false,
-            // anticipatePin: 1 dihapus karena memicu salah kalkulasi di Android
+            anticipatePin: 1,
             invalidateOnRefresh: true,
           });
 
@@ -355,17 +356,25 @@ function App() {
       });
 
       // =========================================================
-      // 7. GITHUB BARS OVERLAY (FIX BUG MUNCUL KECEPETAN)
+      // 7. GITHUB BARS OVERLAY
       // =========================================================
+      // FIX #2: dipicu dari .music-section, bukan dari .github-section.
+      // start: 'top bottom' -> mulai jalan begitu bagian atas
+      // music-section BARU NONGOL di tepi bawah layar (baru mau
+      // kelihatan). Ini dipatok ke tepi viewport (bukan persentase
+      // tetap kayak 'top 50%'), jadi jaraknya otomatis ngikutin
+      // tinggi layar -> konsisten kerasa sama baik di PC (layar
+      // lebar & pendek) maupun HP (layar sempit & tinggi).
+      // end: 'top center' -> selesai pas music-section udah sampai
+      // tengah layar, jadi ada jarak scroll buat scrub-nya biar halus.
       media.add('(min-width: 1px)', () => {
         const githubTl = gsap.timeline({
           scrollTrigger: {
-            trigger: '.github-section',
-            // FIX BUG: Ubah dari 95% ke 75% agar animasi mulai saat section 
-            // github mau habis, bukan saat baru muncul dari bawah.
-            start: 'bottom 75%', 
-            end: 'bottom 0%',
+            trigger: '.music-section',
+            start: 'top bottom',
+            end: 'top center',
             scrub: 1,
+            invalidateOnRefresh: true,
           },
         });
 

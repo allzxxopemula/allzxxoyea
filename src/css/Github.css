@@ -3,6 +3,7 @@
     overflow: hidden;
     padding: clamp(5rem, 10vw, 9rem) 1rem;
     background: #fff;
+    padding-bottom: 200px;
 }
 
 
