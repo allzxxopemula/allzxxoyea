@@ -1,0 +1,280 @@
+.github-section {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(5rem, 10vw, 9rem) 1rem;
+    background: #fff;
+}
+
+
+.github-section::after {
+    content: '</>';
+    position: absolute;
+    top: 3.5rem;
+    right: 4%;
+    color: #f472b6;
+    font-size: clamp(5rem, 14vw, 11rem);
+    font-weight: 800;
+    line-height: 1;
+    transform: rotate(-10deg);
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.github-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- HEADER SECTION --- */
+.github-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.65fr);
+    align-items: end;
+    gap: 3rem;
+    margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.github-kicker {
+    display: inline-block;
+    color: #2563eb;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+}
+
+.github-header h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: clamp(2.8rem, 6vw, 5.8rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+}
+
+.github-header h2 span {
+    display: inline-block;
+    padding: 0 0.12em;
+    color: #fff;
+    background: #2563eb;
+    transform: rotate(-2deg);
+}
+
+.github-header p {
+    max-width: 390px;
+    margin: 0 0 0.4rem;
+    color: #334155;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* --- MAIN NEO-BRUTALISM CARD --- */
+.github-main-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: 2rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 3px solid #000;
+    background: #f8fafc;
+    box-shadow: 8px 8px 0 #000;
+    align-items: center;
+}
+
+.github-badge-tag {
+    position: absolute;
+    top: -18px;
+    left: 24px;
+    z-index: 2;
+}
+
+.github-badge-tag span {
+    padding: 0.4rem 0.75rem;
+    border: 2px solid #000;
+    background: #fde047;
+    box-shadow: 3px 3px 0 #000;
+    color: #0f172a;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+/* --- LEFT PROFILE CONTAINER --- */
+.github-profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.github-avatar-box {
+    width: 5rem;
+    height: 5rem;
+    border: 3px solid #000;
+    background: #22d3ee;
+    box-shadow: 4px 4px 0 #000;
+    overflow: hidden;
+}
+
+.github-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.github-label {
+    color: #2563eb;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.github-profile-details h3 {
+    margin: 0.4rem 0 0.4rem;
+    color: #0f172a;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+.github-profile-details p {
+    margin: 0 0 1.2rem;
+    color: #334155;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Stats Chips Neo-Brutalism */
+.github-stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+}
+
+.stat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.65rem;
+    border: 2px solid #000;
+    background: #fff;
+    box-shadow: 2px 2px 0 #000;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.stat-icon {
+    color: #2563eb;
+}
+
+.github-profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #0f172a;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: transform 0.2s ease;
+}
+
+.github-profile-link:hover {
+    transform: translateX(4px);
+}
+
+/* --- RIGHT CALENDAR CONTAINER --- */
+.github-calendar-wrapper {
+    width: 100%;
+    padding: 1.25rem;
+    border: 3px solid #000;
+    background: #fff;
+    box-shadow: 4px 4px 0 #000;
+    overflow: hidden;
+}
+
+.calendar-scroll-box {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+}
+
+/* Custom Scrollbar untuk Calendar Box */
+.calendar-scroll-box::-webkit-scrollbar {
+    height: 6px;
+}
+.calendar-scroll-box::-webkit-scrollbar-track {
+    background: #e2e8f0;
+}
+.calendar-scroll-box::-webkit-scrollbar-thumb {
+    background: #0f172a;
+    border-radius: 0px;
+}
+
+/* === GITHUB BARS OVERLAY ANIMATION === */
+.github-bars-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 99;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gh-bar {
+  flex: 1;
+  background: #84c5d9;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  margin-right: -1px;
+  width: calc(100% / 8 + 1px);
+}
+
+/* === MEDIA QUERIES (RESPONSIVE HP & TABLET) === */
+@media (max-width: 900px) {
+    .github-main-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .github-header {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .github-section {
+        padding-right: 0.85rem;
+        padding-left: 0.85rem;
+    }
+
+    .github-main-card {
+        padding: 1.25rem 1rem;
+        box-shadow: 5px 5px 0 #000;
+    }
+
+    .github-header h2 {
+        font-size: clamp(2.5rem, 13vw, 3.5rem);
+    }
+
+    .github-calendar-wrapper {
+        padding: 0.75rem;
+        box-shadow: 3px 3px 0 #000;
+    }
+
+    .github-stats-grid {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .stat-chip {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

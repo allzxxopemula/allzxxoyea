@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lexend', sans-serif;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: #f8fafc; /* Warna fallback bersih */
+  color: #0f172a;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Base style untuk shadow neo-brutalism yang konsisten di semua halaman */
+.brutal-shadow {
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0px #000;
+  border-radius: 8px; /* Radius 8px bikin kesan lebih modern dan premium */
+}
+
+/* Shadow versi kecil untuk elemen kecil seperti icon */
+.brutal-shadow-sm {
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0px #000;
+  border-radius: 6px;
+}

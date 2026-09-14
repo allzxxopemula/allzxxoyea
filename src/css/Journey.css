@@ -1,0 +1,206 @@
+.journey-section {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(5rem, 10vw, 9rem) 1rem;
+    background: #fff;
+}
+
+.journey-section::after {
+    content: '→';
+    position: absolute;
+    top: 4rem;
+    right: 5%;
+    color: #f472b6;
+    font-size: clamp(6rem, 16vw, 13rem);
+    font-weight: 800;
+    line-height: 1;
+    transform: rotate(-12deg);
+}
+
+.journey-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.journey-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.65fr);
+    align-items: end;
+    gap: 3rem;
+    margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.journey-header h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: clamp(2.8rem, 6vw, 5.8rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+}
+
+.journey-header h2 span {
+    display: inline-block;
+    padding: 0 0.12em;
+    color: #fff;
+    background: #2563eb;
+    transform: rotate(2deg);
+}
+
+.journey-header p {
+    max-width: 390px;
+    margin: 0 0 0.4rem;
+    color: #334155;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.journey-timeline {
+    position: relative;
+    display: grid;
+    gap: 1.25rem;
+}
+
+.journey-progress-track {
+    position: absolute;
+    top: 5rem;
+    left: calc(75px - 1.5px);
+    width: 3px;
+    height: calc(100% - 6.5rem);
+    background: #cbd5e1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.journey-progress-fill {
+    position: absolute;
+    top: 5rem;
+    left: calc(75px - 1.5px);
+    width: 3px;
+    height: calc(100% - 6.5rem);
+    background: #22d3ee;
+	box-shadow: 0 0 10px  #22d3ee;
+    transform: scaleY(0);
+    transform-origin: top;
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+
+.journey-item {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+	z-index: 22;
+}
+
+.journey-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: #0f172a;
+    font-size: 0.85rem;
+    font-weight: 800;
+	z-index: 2;
+}
+
+.journey-marker > span {
+    padding: 0.4rem 0.65rem;
+    border: 2px solid #000;
+    background: #fde047;
+    box-shadow: 3px 3px 0 #000;
+}
+
+.journey-icon {
+    display: grid;
+    width: 3.2rem;
+    height: 3.2rem;
+    place-items: center;
+    border: 3px solid #000;
+    background: #22d3ee;
+    box-shadow: 4px 4px 0 #000;
+    font-size: 1.3rem;
+	z-index: 2;
+}
+
+.journey-card {
+    padding: 1.5rem 1.75rem;
+    border: 3px solid #000;
+    background: #f8fafc;
+    box-shadow: 6px 6px 0 #000;
+}
+
+.journey-label {
+    color: #2563eb;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.journey-card h3 {
+    margin: 0.6rem 0 0.5rem;
+    color: #0f172a;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.journey-card p {
+    max-width: 650px;
+    margin: 0;
+    color: #334155;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.journey-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    color: #0f172a;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-underline-offset: 4px;
+}
+
+
+
+@media (max-width: 760px) {
+    .journey-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .journey-item { grid-template-columns: 70px minmax(0, 1fr); gap: 1rem; }
+    .journey-marker { font-size: 0.7rem; }
+    .journey-progress-track { left: calc(35px - 1.5px); }
+}
+
+@media (max-width: 480px) {
+    .journey-section { padding-right: 0.85rem; padding-left: 0.85rem; }
+    .journey-card { padding: 1.15rem; }
+    .journey-header h2 { font-size: clamp(2.5rem, 13vw, 3.5rem); }
+    .journey-item { grid-template-columns: 52px minmax(0, 1fr); gap: 0.75rem; }
+    .journey-card h3 { font-size: clamp(1.35rem, 8vw, 2rem); }
+    .journey-progress-track { left: calc(26px - 1.5px); }
+}
+
+
+
+@media (max-width: 760px) {
+    .journey-progress-track,
+    .journey-progress-fill {
+        left: calc(35px - 1.5px);
+    }
+}
+
+@media (max-width: 480px) {
+    .journey-progress-track,
+    .journey-progress-fill {
+        left: calc(26px - 1.5px);
+    }
+}

@@ -1,0 +1,167 @@
+.skill-section {
+    position: relative;
+    /* OVERFLOW HIDDEN DIHAPUS BIAR EFEK 'STICKY' BISA JALAN! */
+    padding: clamp(5rem, 10vw, 9rem) 1rem;
+    background: #84c5d9;
+}
+
+.skill-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.25;
+    background-image: radial-gradient(#0f172a 1px, transparent 1px);
+    background-size: 18px 18px;
+}
+
+.skill-container {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    align-items: start; /* Ini penting biar kolom kiri gak memanjang ke bawah */
+    gap: clamp(2rem, 7vw, 7rem);
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.skill-intro {
+    position: sticky; /* INI YANG BIKIN DIAM DI TEMPAT */
+    top: 4rem; /* Jarak dari atas layar saat dia nyangkut (aku kasih 4rem biar lebih enak dilihat) */
+}
+
+.skill-kicker,
+.journey-kicker {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #1e3a8a;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.skill-intro h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: clamp(2.8rem, 6vw, 5.8rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+}
+
+.skill-intro h2 span {
+    display: inline-block;
+    padding: 0 0.12em;
+    color: #fff;
+    background: #2563eb;
+    transform: rotate(-2deg);
+}
+
+.skill-intro p {
+    max-width: 350px;
+    margin: 2rem 0;
+    color: #0f172a;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.skill-stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem;
+    border: 3px solid #000;
+    background: #fde047;
+    box-shadow: 5px 5px 0 #000;
+    transform: rotate(-5deg);
+}
+
+.skill-stamp svg { font-size: 1.7rem; }
+.skill-stamp span { font-size: 0.68rem; font-weight: 800; line-height: 1.1; }
+
+.skill-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.skill-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 112px;
+    padding: 1rem 1.25rem;
+    border: 3px solid #000;
+    box-shadow: 6px 6px 0 #000;
+    color: #0f172a;
+    transition: transform 0.15s ease;
+}
+
+.skill-card:hover { transform: translateX(-6px); }
+.skill-blue { background: #93c5fd; }
+.skill-yellow { background: #fde047; }
+.skill-pink { background: #f9a8d4; }
+.skill-cyan { background: #22d3ee; }
+.skill-white { background: #f8fafc; }
+.skill-orange { background: #fdba74; }
+
+.skill-card-icon {
+    display: grid;
+    flex: 0 0 3rem;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 2px solid #000;
+    background: #fff;
+    font-size: 1.5rem;
+}
+
+.skill-card-copy { flex: 1; min-width: 0; }
+
+.skill-card-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: #1e3a8a;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.skill-card-meta strong { color: #0f172a; }
+
+.skill-card h3 {
+    margin: 0.35rem 0 0.65rem;
+    font-size: clamp(1.25rem, 2.3vw, 1.7rem);
+    font-weight: 800;
+}
+
+.skill-progress {
+    height: 0.55rem;
+    border: 2px solid #000;
+    background: #fff;
+}
+
+.skill-progress span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: #2563eb;
+    will-change: width;
+}
+
+@media (max-width: 760px) {
+    .skill-container { grid-template-columns: 1fr; gap: 3rem; }
+    .skill-intro { position: static; } /* Mematikan efek sticky di HP karena numpuk */
+    .skill-intro p { max-width: 600px; }
+    .skill-list { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .skill-section { padding-right: 0.85rem; padding-left: 0.85rem; }
+    .skill-card { padding: 0.85rem; }
+    .skill-intro h2 { font-size: clamp(2.5rem, 13vw, 3.5rem); }
+    .skill-card-meta { font-size: 0.58rem; }
+}
