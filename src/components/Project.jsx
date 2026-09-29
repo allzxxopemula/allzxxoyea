@@ -43,6 +43,32 @@ const projects = [
         tags: ['React', 'CSS'],
         link: 'https://hexsplashalz.vercel.app', 
     },
+    {
+        number: '04',
+        category: 'CLASS FINANCE / MANAGEMENT APP',
+        title: 'FinClass',
+        description:
+            'A class cash management application designed to simplify tracking, recording, and managing classroom financial activities efficiently.',
+        image:
+            '/finclass.png',
+        alt: 'FinClass cash management interface',
+        color: 'project-green',
+        tags: ['React', 'Laravel', 'API', 'Vibecode'],
+        link: 'https://financialclass.vercel.app/',
+    },
+    {
+        number: '05',
+        category: 'PORTFOLIO / WEB DEVELOPMENT',
+        title: 'Allzxxo Porto',
+        description:
+            'A personal portfolio website showcasing selected projects, skills, and creative developer experiences in a sleek modern design.',
+        image:
+            '/allzxxoo.png',
+        alt: 'Allzxxo Portfolio website preview',
+        color: 'project-purple',
+        tags: ['React'],
+        link: 'https://allzxxosite.vercel.app/',
+    },
 ];
 
 function Project() {
